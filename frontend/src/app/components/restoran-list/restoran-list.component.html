@@ -1,0 +1,152 @@
+<h2 class="section-title">Restorani</h2>
+
+<div class="search-container">
+  <input
+    type="text"
+    placeholder="Pretraži"
+    [(ngModel)]="filterTekst"
+    class="input"
+  />
+  <button class="btn">Filtriraj</button>
+</div>
+
+<table class="styled-table">
+  <thead>
+    <tr>
+      <th>Ime</th>
+      <th>Otvoren</th>
+      <th>Opterećenost</th>
+      <th>Ocjena</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr
+      *ngFor="let r of restorani"
+      [routerLink]="['/restorani', r.id]"
+      (click)="odaberi(r)"
+      class="clickable-row"
+    >
+      <td>{{ r.ime }}</td>
+      <td>{{ r.trenutnoOtvoren ? "Da" : "Ne" }}</td>
+      <td>{{ r.opterecenost | percent : "1.0-0" }}</td>
+      <td>{{ r.ocjena }}/5</td>
+    </tr>
+  </tbody>
+</table>
+
+<hr />
+<h3 class="section-subtitle">Dodaj novi restoran</h3>
+
+<form (ngSubmit)="dodajRestoran()" #form="ngForm" class="form-container">
+  <input
+    name="ime"
+    [(ngModel)]="noviRestoran.ime"
+    placeholder="Ime"
+    required
+    class="input"
+  />
+  <input
+    name="adresa"
+    [(ngModel)]="noviRestoran.adresa"
+    placeholder="Adresa"
+    required
+    class="input"
+  />
+  <input
+    name="brojTelefona"
+    [(ngModel)]="noviRestoran.brojTelefona"
+    placeholder="Broj telefona"
+    required
+    class="input"
+  />
+  <input
+    name="email"
+    [(ngModel)]="noviRestoran.email"
+    placeholder="Email"
+    required
+    class="input"
+  />
+
+  <label class="checkbox-label">
+    <input
+      type="checkbox"
+      [(ngModel)]="noviRestoran.trenutnoOtvoren"
+      name="otvoren"
+    />
+    Otvoren
+  </label>
+
+  <input
+    type="number"
+    name="prosjecnoVrijemeDostave"
+    [(ngModel)]="noviRestoran.prosjecnoVrijemeDostave"
+    placeholder="Prosječno vrijeme dostave (min)"
+    class="input"
+  />
+  <input
+    type="number"
+    name="prosjecnaOcjena"
+    [(ngModel)]="noviRestoran.prosjecnaOcjena"
+    placeholder="Prosječna ocjena"
+    class="input"
+  />
+  <input
+    type="number"
+    name="maksimalanBrojNarudzbi"
+    [(ngModel)]="noviRestoran.maksimalanBrojNarudzbi"
+    placeholder="Maksimalan broj narudžbi"
+    class="input"
+  />
+  <input
+    type="number"
+    name="michelinStar"
+    [(ngModel)]="noviRestoran.michelinStar"
+    placeholder="Michelin zvjezdice"
+    class="input"
+  />
+
+  <textarea
+    name="kratakOpis"
+    [(ngModel)]="noviRestoran.kratakOpis"
+    placeholder="Kratak opis"
+    required
+    class="textarea"
+  ></textarea>
+
+  <input
+    name="webStranica"
+    [(ngModel)]="noviRestoran.webStranica"
+    placeholder="webStranica"
+    required
+    class="input"
+  />
+
+  <label class="checkbox-label">
+    <input
+      type="checkbox"
+      [(ngModel)]="noviRestoran.vlastitaDostava"
+      name="vlastitaDostava"
+    />
+    Vlastita dostava
+  </label>
+
+  <!-- Radno vrijeme -->
+  <h4 class="section-subtitle">Radno vrijeme</h4>
+
+  <div *ngFor="let dan of dani; let i = index" class="work-time-container">
+    <label>{{ dan.label }}</label>
+    <select
+      [(ngModel)]="privremenoRadnoVrijeme[dan.name]"
+      (ngModelChange)="azurirajRadnoVrijeme(dan.name, $event)"
+      [name]="dan.name"
+      class="input"
+    >
+      <option value="">{{ "Izaberite radno vrijeme" }}</option>
+      <option *ngFor="let option of radnoVrijemeOptions" [value]="option">
+        {{ option }}
+      </option>
+    </select>
+  </div>
+
+  <button type="submit" class="btn">Dodaj</button>
+</form>

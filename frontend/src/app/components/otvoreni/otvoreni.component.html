@@ -1,0 +1,19 @@
+<a (click)="goBack()" class="back-link">Nazad</a>
+
+<div *ngIf="restorani | async as listaRestorana">
+  <div *ngFor="let r of listaRestorana" class="restoran-card">
+    <hr />
+    <h3>Detalji restorana</h3>
+    <p><strong>Ime:</strong> {{ r.ime }}</p>
+    <p><strong>Adresa:</strong> {{ r.adresa }}</p>
+    <p><strong>Otvoren:</strong> {{ r.trenutnoOtvoren ? "Da" : "Ne" }}</p>
+    <p>
+      <strong>Opterećenost:</strong> {{ r.opterecenost | percent : "1.0-0" }}
+    </p>
+    <p><strong>Ocjena:</strong> {{ r.ocjena }}/5</p>
+    <p><strong>Web stranica:</strong> {{ r.webStranica }}</p>
+    <p>
+      <strong>Vlastita dostava:</strong> {{ r.vlastitaDostava ? "Da" : "Ne" }}
+    </p>
+  </div>
+</div>

@@ -1,0 +1,37 @@
+<h2 class="section-title">Filter po zvjezdicama</h2>
+
+<div class="filter-container">
+  <input
+    type="number"
+    min="1"
+    max="5"
+    placeholder="Unesi broj zvjezdica (1-5)"
+    [(ngModel)]="filterTekst"
+    class="input"
+  />
+  <button (click)="filtrirajPoZvjezdicama()" class="btn">Filtriraj</button>
+  <button (click)="ucitajRestorane()" class="btn btn-secondary">Poništi</button>
+</div>
+
+<table class="styled-table">
+  <thead>
+    <tr>
+      <th>Ime</th>
+      <th>Otvoren</th>
+      <th>Opterećenost</th>
+      <th>Zvjezdice</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr
+      *ngFor="let r of filtriraniRestorani"
+      [routerLink]="['/restorani', r.id]"
+      class="clickable-row"
+    >
+      <td>{{ r.ime }}</td>
+      <td>{{ r.trenutnoOtvoren ? "Da" : "Ne" }}</td>
+      <td>{{ r.opterecenost | percent : "1.0-0" }}</td>
+      <td>{{ r.ocjena }}</td>
+    </tr>
+  </tbody>
+</table>
