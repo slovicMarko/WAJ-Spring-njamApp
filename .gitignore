@@ -1,0 +1,56 @@
+# === IntelliJ IDEA ===
+.idea/
+/.idea/
+*.iml
+/shelf/
+/workspace.xml
+/httpRequests/
+/mavenHomeManager.xml
+/dataSources/
+/dataSources.local.xml
+
+# === OS-specific ===
+.DS_Store
+Thumbs.db
+
+# === Node & Angular (frontend) ===
+frontend/node_modules/
+frontend/dist/
+frontend/.angular/
+frontend/.env
+frontend/.env.local
+frontend/.DS_Store
+
+# === Java / Maven / Spring Boot (njamApp) ===
+njamApp/target/
+njamApp/out/
+njamApp/.classpath
+njamApp/.project
+njamApp/.settings/
+njamApp/*.log
+njamApp/.env
+njamApp/.env.local
+
+# === General temp / build / logs ===
+**/tmp/
+**/temp/
+**/logs/
+**/*.log
+
+# === Environment & secrets (global) ===
+*.env
+*.env.local
+.env
+.env.local
+.env.*
+
+# === IDEs ===
+.vscode/
+*.code-workspace
+
+# === Others ===
+*.bak
+*.swp
+*.swo
+*.~*
+
